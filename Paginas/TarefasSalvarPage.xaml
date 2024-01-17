@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:enums="clr-namespace:Tarefas.Enums"
+             x:Class="Tarefas.Paginas.TarefasSalvarPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            
+            <Label
+                Text="Criando Nova Tarefa"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <StackLayout Padding="20">
+                <Entry x:Name="TituloEntry" Placeholder="Título" Text="{ Binding Titulo }" />
+
+                <Picker x:Name="StatusPicker" SelectedItem="{Binding Status}">
+                    <Picker.ItemsSource />
+                </Picker>
+
+                <Picker x:Name="UsuarioPicker" Title="Selecione o Usuário" SelectedItem="{ Binding Usuario }">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Nome"/>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+
+                <Editor x:Name="DescricaoEditor" Placeholder="Descrição" HeightRequest="100" AutoSize="TextChanges" Text="{ Binding Descricao }"/>
+
+                <Button Text="Salvar" Clicked="OnSaveClicked" />
+            </StackLayout>
+            
+            <!-- Botão Voltar -->
+            <Button Text="Voltar" Clicked="VoltarClicked" HorizontalOptions="Center"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

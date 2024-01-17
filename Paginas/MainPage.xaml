@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tarefas.Paginas.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Label
+                Text="Olá alunos!"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Button Text="Novo" Clicked="NovoClicked" HorizontalOptions="Center"/>
+
+            <StackLayout>
+                <Grid Padding="5" 
+                    BackgroundColor="LightGray" 
+                    RowDefinitions="Auto" 
+                    ColumnDefinitions="0.1*, 0.3*, 0.2*, 0.2*, 0.2*">
+                    <Label Text="#" FontAttributes="Bold" Grid.Column="0" />
+                    <Label Text="Titulo" FontAttributes="Bold" Grid.Column="1" />
+                    <Label Text="Usuario" FontAttributes="Bold" Grid.Column="2" />
+                    <Label Text="Status" FontAttributes="Bold" Grid.Column="3" />
+                    <Label Text="Ações" FontAttributes="Bold" Grid.Column="4" />
+                </Grid>
+
+                <CollectionView x:Name="TarefasCollectionTable">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" 
+                                RowDefinitions="Auto" 
+                                ColumnDefinitions="0.1*, 0.3*, 0.2*, 0.2*, 0.2*">
+                                <Label Text="{Binding Id}" Grid.Column="0" />
+                                <Label Text="{Binding Titulo}" Grid.Column="1" />
+                                <Label Text="{Binding NomeUsuario}" Grid.Column="2" />
+                                <Label Text="{Binding Status}" Grid.Column="3" />
+
+                                <Grid Grid.Column="4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Text="Ver" 
+                                            Command="{Binding Path=BindingContext.NavigateToDetailCommand, Source={x:Reference Name=TarefasCollectionTable}}"
+                                            CommandParameter="{Binding .}"
+                                            Grid.Row="0" />
+                                    <Button Text="Alterar" 
+                                            BackgroundColor="Yellow"
+                                            TextColor="Black"
+                                            Command="{Binding Path=BindingContext.NavigateToChangeCommand, Source={x:Reference Name=TarefasCollectionTable}}"
+                                            CommandParameter="{Binding .}"
+                                            Grid.Row="1" />
+                                    <Button Text="Excluir" 
+                                            BackgroundColor="Red"
+                                            TextColor="White"
+                                            Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=TarefasCollectionTable}}"
+                                            CommandParameter="{Binding .}"
+                                            Grid.Row="2" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
