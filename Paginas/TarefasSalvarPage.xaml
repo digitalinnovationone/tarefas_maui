@@ -30,10 +30,14 @@
                 <Editor x:Name="DescricaoEditor" Placeholder="Descrição" HeightRequest="100" AutoSize="TextChanges" Text="{ Binding Descricao }"/>
 
                 <Button Text="Salvar" Clicked="OnSaveClicked" />
+
+                <Button Text="Voltar"
+                    BackgroundColor="Gray"
+                    Clicked="OnVoltarClicked" 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    Margin="0,10,0,0" />
             </StackLayout>
-            
-            <!-- Botão Voltar -->
-            <Button Text="Voltar" Clicked="VoltarClicked" HorizontalOptions="Center"/>
 
 
         </VerticalStackLayout>
