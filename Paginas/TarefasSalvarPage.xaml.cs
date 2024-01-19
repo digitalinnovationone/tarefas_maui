@@ -27,9 +27,16 @@ public partial class TarefasSalvarPage : ContentPage
 
 		StatusPicker.SelectedItem = status;
     	UsuarioPicker.SelectedItem = usuario;
+
+		this.Appearing += OnPageAppearing;
 	}
 
-
+	private async void OnPageAppearing(object sender, EventArgs e)
+	{
+		await Task.Delay(100);
+		TituloEntry.Focus();
+	}
+	
 	private async void OnSaveClicked(object sender, EventArgs e)
     {
 		if(string.IsNullOrEmpty(TituloEntry.Text))
